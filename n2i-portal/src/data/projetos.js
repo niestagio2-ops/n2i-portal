@@ -1,0 +1,6 @@
+export const projetos = [
+  { id: 1, titulo: 'DigiHealth — Tecnologias Digitais para Saude Comunitaria', estado: 'Em curso', financiamento: 'FCT', inicio: '2023', fim: '2026', descricao: 'Desenvolvimento de solucoes tecnologicas para monitorizacao e promocao da saude em comunidades rurais.' },
+  { id: 2, titulo: 'EduTech+: Inovacao Pedagogica no Ensino Superior', estado: 'Em curso', financiamento: 'COMPETE 2030', inicio: '2022', fim: '2025', descricao: 'Investigacao sobre praticas pedagogicas inovadoras mediadas por tecnologia no ensino superior politecnico.' },
+  { id: 3, titulo: 'SmartMaia — Cidade Inteligente e Sustentavel', estado: 'Concluido', financiamento: 'PRR', inicio: '2020', fim: '2023', descricao: 'Projeto de investigacao aplicada para desenvolvimento de solucoes de mobilidade e gestao urbana inteligente.' },
+  { id: 4, titulo: 'CircularEconomy Lab — Modelos de Economia Circular', estado: 'Concluido', financiamento: 'H2020', inicio: '2019', fim: '2022', descricao: 'Analise e desenvolvimento de modelos de economia circular aplicaveis ao tecido empresarial regional.' },
+]
