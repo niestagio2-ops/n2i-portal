@@ -1,42 +1,38 @@
+import { NavLink } from 'react-router-dom'
 import { colors } from '../../theme.js'
 
 const navItems = [
-  { key: 'n2i',        label: 'N2i' },
-  { key: 'membros',    label: 'Membros' },
-  { key: 'projetos',   label: 'Projetos' },
-  { key: 'publicacoes',label: 'Publicacoes' },
-  { key: 'eventos',    label: 'Eventos' },
-  { key: 'noticias',   label: 'Noticias' },
-  { key: 'areas',      label: 'Areas e Apoios' },
-  { key: 'condicao',   label: 'Condicao de membro' },
-  { key: 'basesdados', label: 'Bases de Dados Cientificas' },
+  { path: '/investigacao/n2i',          label: 'N2i' },
+  { path: '/investigacao/membros',      label: 'Membros' },
+  { path: '/investigacao/projetos',     label: 'Projetos' },
+  { path: '/investigacao/publicacoes',  label: 'Publicacoes' },
+  { path: '/investigacao/eventos',      label: 'Eventos' },
+  { path: '/investigacao/noticias',     label: 'Noticias' },
+  { path: '/investigacao/areas',        label: 'Areas e Apoios' },
+  { path: '/investigacao/condicao',     label: 'Condicao de membro' },
+  { path: '/investigacao/basedados',    label: 'Bases de Dados Cientificas' },
 ]
 
-function Sidebar({ ativo, setAtivo }) {
+function Sidebar() {
   return (
     <aside style={styles.sidebar}>
-
       <p style={styles.label}>INVESTIGACAO</p>
-
-      {navItems.map((item) => {
-        const isAtivo = ativo === item.key
-        return (
-          <button
-            key={item.key}
-            onClick={() => setAtivo(item.key)}
-            style={{
-              ...styles.btn,
-              color: isAtivo ? colors.orange : '#222222',
-              fontWeight: isAtivo ? 700 : 400,
-              borderLeft: isAtivo ? `3px solid ${colors.orange}` : '3px solid transparent',
-              background: isAtivo ? '#FEF3E7' : 'transparent',
-            }}
-          >
-            {item.label}
-          </button>
-        )
-      })}
-
+      {navItems.map((item) => (
+        <NavLink
+          key={item.path}
+          to={item.path}
+          className="sidebar-link"
+          style={({ isActive }) => ({
+            ...styles.link,
+            color: isActive ? colors.orange : '#222',
+            fontWeight: isActive ? 700 : 400,
+            borderLeft: isActive ? '3px solid ' + colors.orange : '3px solid transparent',
+            background: isActive ? '#FEF3E7' : 'transparent',
+          })}
+        >
+          {item.label}
+        </NavLink>
+      ))}
     </aside>
   )
 }
@@ -57,14 +53,11 @@ const styles = {
     padding: '12px 20px 8px',
     textTransform: 'uppercase',
   },
-  btn: {
+  link: {
     display: 'block',
-    width: '100%',
-    textAlign: 'left',
     padding: '9px 20px',
     fontSize: 14,
-    border: 'none',
-    cursor: 'pointer',
+    textDecoration: 'none',
     transition: 'all .1s',
   },
 }

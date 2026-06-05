@@ -6,7 +6,7 @@ function N2i() {
     <div>
 
       {/* Topo: logo + texto institucional */}
-      <div style={styles.topo}>
+      <div style={styles.topo} className="topo-grid">
 
         <div style={styles.logoBox}>
             <img src={logoN2i} alt="Logo N2i" style={{ width: 140 }} />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Header from './components/layout/Header.jsx'
 import Footer from './components/layout/Footer.jsx'
 import Breadcrumb from './components/layout/Breadcrumb.jsx'
@@ -11,34 +11,35 @@ import Eventos from './pages/Eventos.jsx'
 import Noticias from './pages/Noticias.jsx'
 import Areas from './pages/Areas.jsx'
 import Condicao from './pages/Condicao.jsx'
-import BasesDados from './pages/BaseDados.jsx'
+import BaseDados from './pages/BaseDados.jsx'
 
 function App() {
-  const [seccao, setSeccao] = useState('n2i')
-
-  function renderSeccao() {
-    if (seccao === 'n2i')         return <N2i />
-    if (seccao === 'membros')     return <Membros />
-    if (seccao === 'projetos')    return <Projetos />
-    if (seccao === 'publicacoes') return <Publicacoes />
-    if (seccao === 'eventos')     return <Eventos />
-    if (seccao === 'noticias')    return <Noticias />
-    if (seccao === 'areas')       return <Areas />
-    if (seccao === 'condicao')    return <Condicao />
-    if (seccao === 'basesdados')  return <BasesDados />
-    return null
-  }
+  const location = useLocation()
+  const seccao = location.pathname.replace('/investigacao/', '') || 'n2i'
 
   return (
     <div>
       <Header />
       <Breadcrumb pagina={seccao} />
-      <div style={styles.wrapper}>
-        <Sidebar ativo={seccao} setAtivo={setSeccao} />
-        <main style={styles.main}>
-          {renderSeccao()}
+
+      <div style={styles.wrapper} className="layout-wrapper">
+        <Sidebar ativo={seccao} />
+        <main style={styles.main} className="main-content">
+          <Routes>
+            <Route path="/" element={<Navigate to="/investigacao/n2i" replace />} />
+            <Route path="/investigacao/n2i" element={<N2i />} />
+            <Route path="/investigacao/membros" element={<Membros />} />
+            <Route path="/investigacao/projetos" element={<Projetos />} />
+            <Route path="/investigacao/publicacoes" element={<Publicacoes />} />
+            <Route path="/investigacao/eventos" element={<Eventos />} />
+            <Route path="/investigacao/noticias" element={<Noticias />} />
+            <Route path="/investigacao/areas" element={<Areas />} />
+            <Route path="/investigacao/condicao" element={<Condicao />} />
+            <Route path="/investigacao/basedados" element={<BaseDados />} />
+          </Routes>
         </main>
       </div>
+
       <Footer />
     </div>
   )
