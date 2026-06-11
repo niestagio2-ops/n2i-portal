@@ -1,3 +1,8 @@
+// ─── PONTO DE ENTRADA DA APLICAÇÃO ───────────────────────
+// Este ficheiro arranca o React e injeta a app no index.html
+// O BrowserRouter activa o React Router em toda a aplicação
+// ─────────────────────────────────────────────────────────
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
