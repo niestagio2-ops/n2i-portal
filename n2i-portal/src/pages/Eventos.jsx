@@ -3,15 +3,25 @@
 // Card com bloco de data visual laranja + detalhes do evento.
 // ─────────────────────────────────────────────────────────
 
-// Dados mock dos eventos — mover para src/data/eventos.js futuramente
+const IconClock = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+)
+
+const IconPin = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+  </svg>
+)
+
 const eventos = [
-  { id: 1, titulo: 'Semana da Investigacao IPMAIA 2025',                  data: '2025-03-10', hora: '09:00', local: 'Auditorio Principal - IPMAIA',       descricao: 'Evento anual de partilha de resultados de investigacao com sessoes plenarias e workshops.' },
-  { id: 2, titulo: 'Workshop: Escrita Cientifica e Publicacao Internacional', data: '2025-02-20', hora: '14:00', local: 'Sala de Reunioes N2i',              descricao: 'Workshop pratico sobre boas praticas de escrita cientifica e submissao a revistas indexadas.' },
-  { id: 3, titulo: 'Conferencia Internacional de Inovacao e Tecnologia',  data: '2025-04-05', hora: '10:00', local: 'Centro de Congressos da Maia',        descricao: 'Conferencia interdisciplinar com investigadores nacionais e internacionais.' },
-  { id: 4, titulo: 'N2i Open Day - Visitas e Candidaturas',               data: '2025-05-15', hora: '10:00', local: 'IPMAIA, Campus da Maia',              descricao: 'Dia aberto para candidatos a bolsas de investigacao e novos membros colaboradores.' },
+  { id: 1, titulo: 'Semana da Investigacao IPMAIA 2025',                   data: '2025-03-10', hora: '09:00', local: 'Auditorio Principal - IPMAIA',    descricao: 'Evento anual de partilha de resultados de investigacao com sessoes plenarias e workshops.' },
+  { id: 2, titulo: 'Workshop: Escrita Cientifica e Publicacao Internacional', data: '2025-02-20', hora: '14:00', local: 'Sala de Reunioes N2i',          descricao: 'Workshop pratico sobre boas praticas de escrita cientifica e submissao a revistas indexadas.' },
+  { id: 3, titulo: 'Conferencia Internacional de Inovacao e Tecnologia',   data: '2025-04-05', hora: '10:00', local: 'Centro de Congressos da Maia',    descricao: 'Conferencia interdisciplinar com investigadores nacionais e internacionais.' },
+  { id: 4, titulo: 'N2i Open Day - Visitas e Candidaturas',                data: '2025-05-15', hora: '10:00', local: 'IPMAIA, Campus da Maia',          descricao: 'Dia aberto para candidatos a bolsas de investigacao e novos membros colaboradores.' },
 ]
 
-// Abreviações dos meses em português
 const meses = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez']
 
 function Eventos() {
@@ -19,33 +29,25 @@ function Eventos() {
     <div>
       <h1 style={styles.titulo}>Eventos</h1>
       <p style={styles.sub}>Eventos cientificos e academicos organizados ou com participacao do N2i.</p>
-
-      {/* ── Lista de eventos ── */}
       <div style={styles.lista}>
         {eventos.map((ev) => {
-          // Separa a data em ano, mês e dia para o bloco visual
           const partes = ev.data.split('-')
           return (
             <div key={ev.id} style={styles.card}>
-
-              {/* Bloco de data laranja */}
               <div style={styles.dataBox}>
                 <span style={styles.dia}>{partes[2]}</span>
                 <span style={styles.mes}>{meses[parseInt(partes[1]) - 1]}</span>
                 <span style={styles.anoData}>{partes[0]}</span>
               </div>
-
-              {/* Conteúdo do evento */}
               <div style={styles.conteudo}>
                 <h3 style={styles.cardTitulo}>{ev.titulo}</h3>
                 <p style={styles.desc}>{ev.descricao}</p>
                 <div style={styles.meta}>
-                  <span>🕐 {ev.hora}</span>
-                  <span>📍 {ev.local}</span>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}><IconClock /> {ev.hora}</span>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}><IconPin /> {ev.local}</span>
                 </div>
                 <button style={styles.btn}>Saber mais</button>
               </div>
-
             </div>
           )
         })}
@@ -54,7 +56,6 @@ function Eventos() {
   )
 }
 
-// ─── ESTILOS DA PÁGINA EVENTOS ────────────────────────────
 const styles = {
   titulo:     { fontSize: 22, fontWeight: 700, color: '#222', borderBottom: '3px solid #E87722', paddingBottom: 10, display: 'inline-block', marginBottom: 4 },
   sub:        { fontSize: 14, color: '#666', marginTop: 10, marginBottom: 24 },
